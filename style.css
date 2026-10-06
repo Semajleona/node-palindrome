@@ -1,0 +1,43 @@
+body {
+    background-image: url(magicpattern-87PP9Zd7MNo-unsplash.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+h1 {
+    color: rgb(12, 89, 65);
+    text-align: center;
+    font-size: 100px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    font-size: 30px;
+    height: 40px;
+    width: 400px;
+}
+
+button {
+    margin-top: 25px;
+    ;
+    border-radius: 40px;
+    background-color: white;
+    font-weight: 900;
+    height: 60px;
+    width: 250px;
+    font-size: 20px;
+}
+
+h2 {
+    color: azure;
+    font-size: 100px;
+
+}
