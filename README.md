@@ -1,115 +1,93 @@
 
-🔄 Palindrome Checker
-
-
-
-
-
-
 <img width="1393" height="758" alt="Screenshot 2026-10-06 at 7 58 08 AM" src="https://github.com/user-attachments/assets/f4d41cc3-1f8b-4708-83b3-817fb20470c2" />
 Description
 
-The Palindrome Checker is a simple web application that allows a user to enter a word and find out whether or not it is a palindrome.
+https://node-palindrome-e9bk.onrender.com
+# 🔄 Palindrome Checker
 
-A palindrome is a word that reads the same forward and backward.
+## 📌 Project Description
+
+Palindrome Checker is a simple web application that allows users to enter a word and determine whether it reads the same forward and backward. The application uses JavaScript and a Node.js server to process the word and display the result.
 
 For example:
+- **racecar** → Palindrome ✅
+- **hello** → Not a Palindrome ❌
 
-racecar → Palindrome ✅
+## ✨ Features
 
-hello → Not a Palindrome ❌
+- **Word Input:** Enter a word to check whether it's a palindrome.
+- **Palindrome Detection:** Reverses the word and compares it with the original.
+- **Instant Results:** Displays whether the entered word is a palindrome.
+- **API Integration:** Uses `fetch()` to communicate with a Node.js server.
+- **Dynamic Updates:** Displays results on the webpage without reloading.
 
-💻 How the App Works
+## 🛠️ Tech Stack
 
-The user enters a word into the input box.
+- **HTML5:** Structures the input field, button, and result area.
+- **CSS3:** Styles the application's layout and appearance.
+- **JavaScript:** Handles user interactions, API requests, and DOM updates.
+- **Node.js:** Processes palindrome checks and returns JSON responses.
 
-The user clicks the button to check the word.
+## 💡 What I Learned
 
-JavaScript sends the word to the Node.js server using fetch().
+Through this project, I practiced:
 
-The server reverses the word.
+- Writing JavaScript functions and conditional statements.
+- Using event listeners to respond to button clicks.
+- Manipulating the DOM to display results dynamically.
+- Using `fetch()` to send requests to a backend server.
+- Working with query parameters and JSON responses.
+- Using `.split()`, `.reverse()`, and `.join()` to manipulate strings.
+- Building a basic Node.js HTTP server.
+- Connecting frontend and backend functionality.
 
-The server compares the original word to the reversed word.
+## 🚀 Installation
 
-The server sends the result back as JSON.
+1. Clone the repository:
 
-The result is displayed on the webpage.
+   ```bash
+   git clone https://github.com/Semajleona/node-palindrome.git
+   ```
 
-🛠️ Tech Stack
+2. Navigate into the project folder:
 
-HTML
+   ```bash
+   cd node-palindrome
+   ```
 
-Creates the structure of the application, including the input, button, and result area.
+3. Install dependencies:
 
-CSS
+   ```bash
+   npm install
+   ```
 
-Styles the application and controls the appearance of the webpage.
+4. Start the server:
 
-JavaScript
+   ```bash
+   npm start
+   ```
 
-Handles user input, the button click, the fetch() request, and displaying the result.
+   Alternatively, run `node server.js`.
 
-Node.js
+5. Open your browser and visit:
 
-Creates the server that receives the user's word, checks whether it is a palindrome, and sends the result back to the browser.
+   ```text
+   http://localhost:8000
+   ```
 
-🧠 Skills Practiced
+## 🎮 How to Use
 
-JavaScript functions
+1. Enter a word into the input field.
+2. Click the button to check the word.
+3. The server reverses the word and compares it with the original.
+4. View the result to see whether your word is a palindrome.
+5. Try another word!
 
-Event listeners
+## 🎯 Project Goal
 
-DOM manipulation
+Build a functional palindrome checker while practicing JavaScript string manipulation, HTTP requests, and communication between a frontend interface and a Node.js backend.
 
-fetch()
+## 📂 GitHub Repository
 
-Query parameters
-
-.split()
-
-.reverse()
-
-.join()
-
-Conditional statements
-
-JSON
-
-Basic Node.js server development
-
-Frontend and backend communication
-
-💻 Local Setup
-
-1. Clone the repository
-
-Clone this project to your computer:
-
-git clone YOUR-REPOSITORY-LINK
-
-2. Open the project folder
-
-cd YOUR-PROJECT-FOLDER
-
-3. Install dependencies
-
-npm install
-
-If the project uses figlet and it is not already installed, run:
-
-npm install figlet
-
-4. Start the server
-
-node server.js
-
-5. Open the application
-
-Open your browser and go to:
-
-http://localhost:8000
-
-Enter a word and click the button to see if it is a palindrome.
-
-🎯 Goal
+[View the Source Code](https://github.com/Semajleona/node-palindrome)
 
