@@ -1,4 +1,12 @@
+
 {
+  "name": "node-palindrome",
+  "version": "1.0.0",
+  "description": "Palindrome Checker Application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "figlet": "^1.12.0"
   }
