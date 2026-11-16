@@ -84,4 +84,10 @@ const server = http.createServer(function (req, res) { //create a server and sto
         });
     }
 });
-server.listen(8000) //starts the server and listen for rewuests
+
+const PORT = process.env.PORT || 8000
+
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Palindrome server running on port ${PORT}`)
+})
+
