@@ -1,93 +1,170 @@
-//user inputs a word  or phrase
-//that phrase is sent to the server
-// the server  does something to check to see if its a palindrome/ same word backwards
-// if the word is a palindrome then a message is displaysed 
-//  if the word is not a palindrome a message is didsplayed 
-//user can clear input and start again
-
-//params['word'].split("")// this breaks the word apart letter by letter into an array from being a string, no space
-//params['word'].split("").reverse()//reverse order of letters in the array after split
-//params['word'].split("").reverse().join("")// brings the letters back together and turn it back into a string(the word is still backwards)
 
 
-const http = require('http');// allows webpage and server communicare data its how we send r
-const fs = require('fs')// file sysytem
-const url = require('url');
-const querystring = require('querystring');//info in the url
-const figlet = require('figlet')// a package
+// PALINDROME CHECKER
+// User enters a word or phrase.
+// The word is sent to the server.
+// The server reverses the word.
+// The server checks if the word is a palindrome.
+// The result is sent back to the webpage.
 
-const server = http.createServer(function (req, res) { //create a server and stores it in veriable server
-    const page = url.parse(req.url).pathname;// this is the url path stores in page variable
-    const params = querystring.parse(url.parse(req.url).query);
-    console.log(page);
+// IMPORT MODULES
+const http = require('http')
+const fs = require('fs')
+const url = require('url')
+const querystring = require('querystring')
+const figlet = require('figlet')
 
+// CREATE SERVER
+const server = http.createServer(function (req, res) {
 
-    if (page == '/') {// means if page = homepage run this function
-        fs.readFile('index.html', function (err, data) {//fs reads the html file
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(data);// senst html to browser
-            res.end();
-        });
+    // Get the URL path
+    const page = url.parse(req.url).pathname
+
+    // Get information from the URL
+    const params = querystring.parse(url.parse(req.url).query)
+
+    console.log(page)
+
+    // HOME PAGE
+    if (page == '/') {
+
+        fs.readFile('index.html', function (err, data) {
+
+            if (err) {
+                res.writeHead(404)
+                res.end('HTML file not found')
+                return
+            }
+
+            res.writeHead(200, { 'Content-Type': 'text/html' })
+            res.end(data)
+
+        })
+
     }
 
+    // PALINDROME API
+    else if (page == '/api') {
 
+        // Get the word entered by the user
+        let word = params['word']
 
+        // Check if the user entered a word
+        if (!word || typeof word !== 'string' || word.trim() === '') {
 
-    else if (page == '/api') { //main.js sends a request to /api run this
+            const objToJson = {
+                message: 'PLEASE ENTER A WORD'
+            }
 
-        let reversedWord = params['word'].split("").reverse().join("")
-        //params['word'].split("")// this breaks the word apart letter by letter into an array from being a string, no space
-        //params['word'].split("").reverse()//reverse order of letters in the array after split
-        //params['word'].split("").reverse().join("")// brings the letters back together and turn it back into a string(the word is still backwards)
+            res.writeHead(400, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify(objToJson))
+            return
+        }
 
-        if (params['word'] == reversedWord) {
+        // Reverse the word
+        let reversedWord = word.split("").reverse().join("")
+
+        // Check if the word is a palindrome
+        if (word == reversedWord) {
+
             const objToJson = {
                 message: 'THIS IS A PALINDROME'
             }
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(objToJson))// takes the object turns it into something readable for JSON and sends response to main.js thats where tge fetch request is happening
-        }
 
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify(objToJson))
 
-        else {
+        } else {
+
             const objToJson = {
                 message: 'THIS IS NOT A PALINDROME'
             }
-            res.writeHead(200, { 'Content-Type': 'application/json' });
+
+            res.writeHead(200, { 'Content-Type': 'application/json' })
             res.end(JSON.stringify(objToJson))
+
         }
+
     }
 
+    // CSS FILE
     else if (page == '/style.css') {
+
         fs.readFile('style.css', function (err, data) {
-            res.write(data);
-            res.end();
-        });
-    }
 
-    else if (page == '/main.js') {
-        fs.readFile('main.js', function (err, data) {
-            res.writeHead(200, { 'Content-Type': 'text/javascript' });
-            res.write(data);
-            res.end();
-        });
-    }
-    else {
-        figlet('404!!', function (err, data) {
             if (err) {
-                console.log('Something went wrong...');
-                console.dir(err);
-                return;
+                res.writeHead(404)
+                res.end('CSS file not found')
+                return
             }
-            res.write(data);
-            res.end();
-        });
-    }
-});
 
+            res.writeHead(200, { 'Content-Type': 'text/css' })
+            res.end(data)
+
+        })
+
+    }
+
+    // BACKGROUND IMAGE
+    else if (page == '/sabina-music-rich-OJy0JHnoUZQ-unsplash.jpg') {
+
+        fs.readFile('sabina-music-rich-OJy0JHnoUZQ-unsplash.jpg', function (err, data) {
+
+            if (err) {
+                res.writeHead(404)
+                res.end('Image not found')
+                return
+            }
+
+            res.writeHead(200, { 'Content-Type': 'image/jpeg' })
+            res.end(data)
+
+        })
+
+    }
+
+    // JAVASCRIPT FILE
+    else if (page == '/main.js') {
+
+        fs.readFile('main.js', function (err, data) {
+
+            if (err) {
+                res.writeHead(404)
+                res.end('JavaScript file not found')
+                return
+            }
+
+            res.writeHead(200, { 'Content-Type': 'text/javascript' })
+            res.end(data)
+
+        })
+
+    }
+
+    // 404 PAGE
+    else {
+
+        figlet('404!!', function (err, data) {
+
+            if (err) {
+                console.log('Something went wrong...')
+                res.writeHead(500)
+                res.end('Server error')
+                return
+            }
+
+            res.writeHead(404, { 'Content-Type': 'text/plain' })
+            res.end(data)
+
+        })
+
+    }
+
+})
+
+// SERVER PORT
 const PORT = process.env.PORT || 8000
 
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`Palindrome server running on port ${PORT}`)
 })
-
